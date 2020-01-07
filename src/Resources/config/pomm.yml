@@ -31,6 +31,13 @@ services:
     tags:
       - { name: 'api_platform.item_data_provider' }
 
+  api_platform.pomm.property_metadata:
+    class: 'PommProject\ApiPlatform\Metadata\Property\PommPropertyMetadataFactory'
+    arguments: ['@pomm', '@api_platform.pomm.property_metadata.inner']
+    decorates: 'api_platform.metadata.property.metadata_factory'
+    decoration_priority: 39
+    public: false
+
   api_platform.pomm.listener.view.write:
     class: 'PommProject\ApiPlatform\WriteListener'
     arguments: ['@pomm']
