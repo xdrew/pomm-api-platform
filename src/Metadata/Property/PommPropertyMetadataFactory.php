@@ -55,15 +55,16 @@ final class PommPropertyMetadataFactory implements PropertyMetadataFactoryInterf
         $primaryKeys = $model->getStructure()
             ->getPrimaryKey();
 
-        foreach ($primaryKeys as $key => $identifier) {
-            if ($identifier === $property) {
-                $propertyMetadata = $propertyMetadata->withIdentifier(true);
-            }
+        if (in_array($property, $primaryKeys)) {
+            $propertyMetadata = $propertyMetadata->withIdentifier(true);
+        }
 
-            if (null !== $propertyMetadata->isWritable()) {
-                break;
-            }
+        if (null === $propertyMetadata->isIdentifier()) {
+            $propertyMetadata = $propertyMetadata->withIdentifier(false);
+        }
 
+        if (in_array($property, $fieldNames)) {
+            $propertyMetadata = $propertyMetadata->withReadable(true);
             $propertyMetadata = $propertyMetadata->withWritable(true);
         }
 
