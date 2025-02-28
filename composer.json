@@ -12,7 +12,7 @@
     "require": {
         "php": ">=7.0",
         "api-platform/core": "^2",
-        "pomm-project/pomm-bundle": "*"
+        "conserto/pomm-bundle": "*"
     },
     "autoload": {
         "psr-4": { "PommProject\\ApiPlatform\\": "src/" }
